@@ -8,10 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-public class BookStoreAppApplication {
+@RestController
+public class BookStoreAppApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(BookStoreAppApplication.class, args);
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
+		return application.sources(BookStoreAppApplication.class);
+	}
+	@RequestMapping(value = "/hello")
+	public String greetingMessage(){
+		return "Hello, welcome Saul";
 	}
 
 }
